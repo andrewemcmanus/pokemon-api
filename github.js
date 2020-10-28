@@ -1,12 +1,21 @@
+const container = document.querySelector('.container');
+
 fetch('https://api.github.com/users/andrewemcmanus')
 .then(response => { 
     // console.log(response);
     return response.json();
 })
 .then(githubData => {
-    console.log(githubData);
-    // returns an object with key-value pairs containing user information!
-
+    const userInfo = {
+        bio: githubData.bio, // grab the value from githubData and assign it to this key
+        username: githubData.login,
+        name: githubData.name
+    }
+    console.log(userInfo);
+    const newElement = document.createElement('p');
+    newElement.textContent = userInfo.username;
+    container.appendChild(newElement);
+    
 })
 
 fetch('https://api.spacexdata.com/v3/capsules')
